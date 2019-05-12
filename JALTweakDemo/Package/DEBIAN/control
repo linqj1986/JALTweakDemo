@@ -1,0 +1,17 @@
+Package: com.qijiang.tweak1
+Name: tweak1
+Version: 0.1-1
+Description: 
+Section: System
+Depends: firmware (>= 5.0), mobilesubstrate
+Conflicts: 
+Replaces: 
+Priority: optional
+Architecture: iphoneos-arm
+Author: j066
+dev: 
+Homepage: 
+Depiction: 
+Maintainer: 
+Icon: 
+
