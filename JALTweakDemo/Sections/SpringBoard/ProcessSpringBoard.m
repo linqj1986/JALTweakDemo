@@ -11,7 +11,7 @@
 
 + (void)Fun1
 {
-    NSLog(@"lqj-Fun1");
+    NSLog(@"lqj-ProcessSpringBoard.Fun1");
 }
 
 @end

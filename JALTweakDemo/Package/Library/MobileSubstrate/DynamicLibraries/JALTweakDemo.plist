@@ -6,9 +6,12 @@
 	<dict>
 		<key>Bundles</key>
 		<array>
+			<string>com.tencent.xin</string>
+			<string>com.qijiang.emptyTest</string>
+			<string>com.apple.HealthKitUI</string>
+			<string>com.tencent.mqq</string>
 			<string>com.apple.Maps</string>
 			<string>com.tencent.yuling</string>
-			<string>com.linqj.test</string>
 			<string>com.apple.springboard</string>
 		</array>
 	</dict>
