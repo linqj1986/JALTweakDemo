@@ -15,6 +15,7 @@
 		ABC80D3122803D6300C7A93E /* JALTweakDemo.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABC80D3022803D6300C7A93E /* JALTweakDemo.mm */; };
 		ABC80D5F22819CD700C7A93E /* ProcessSpringBoard.h in Headers */ = {isa = PBXBuildFile; fileRef = ABC80D5D22819CD700C7A93E /* ProcessSpringBoard.h */; };
 		ABC80D6022819CD700C7A93E /* ProcessSpringBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC80D5E22819CD700C7A93E /* ProcessSpringBoard.m */; };
+		ABE4BA31228D8A890027EA53 /* UIAlertTweak.mm in Sources */ = {isa = PBXBuildFile; fileRef = ABE4BA30228D8A890027EA53 /* UIAlertTweak.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		ABC80D5E22819CD700C7A93E /* ProcessSpringBoard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessSpringBoard.m; sourceTree = "<group>"; };
 		ABE4BA26228D55840027EA53 /* UIDeviceTweak.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UIDeviceTweak.xm; sourceTree = "<group>"; };
 		ABE4BA2A228D568F0027EA53 /* UIDeviceTweak.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIDeviceTweak.mm; sourceTree = "<group>"; };
+		ABE4BA2E228D8A220027EA53 /* UIAlertTweak.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UIAlertTweak.xm; sourceTree = "<group>"; };
+		ABE4BA30228D8A890027EA53 /* UIAlertTweak.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIAlertTweak.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +111,11 @@
 			children = (
 				AB868DAA228BF06A0034ABB8 /* Tmp.h */,
 				ABC80D2F22803D6300C7A93E /* JALTweakDemo.xm */,
-				ABC80D3022803D6300C7A93E /* JALTweakDemo.mm */,
 				ABE4BA26228D55840027EA53 /* UIDeviceTweak.xm */,
+				ABE4BA2E228D8A220027EA53 /* UIAlertTweak.xm */,
+				ABC80D3022803D6300C7A93E /* JALTweakDemo.mm */,
 				ABE4BA2A228D568F0027EA53 /* UIDeviceTweak.mm */,
+				ABE4BA30228D8A890027EA53 /* UIAlertTweak.mm */,
 				AB62310B228567EC00170E12 /* VenderHelpers */,
 				AB62311022856B3F00170E12 /* Sections */,
 				ABC80D2A22803D6300C7A93E /* Package */,
@@ -277,6 +282,7 @@
 				ABC80D3122803D6300C7A93E /* JALTweakDemo.mm in Sources */,
 				AB62310E2285680000170E12 /* CTBlockDescription.m in Sources */,
 				ABC80D6022819CD700C7A93E /* ProcessSpringBoard.m in Sources */,
+				ABE4BA31228D8A890027EA53 /* UIAlertTweak.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,9 +38,7 @@ NSString *appName;
 NSString *delegateClassName;
 static void NotificationReceivedCallback(CFNotificationCenterRef center,void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo)
 {
-    if([appName isEqualToString:@"SpringBoard"]) {
-
-    } else {
+    if(![appName isEqualToString:@"SpringBoard"]) {
         NSString *friendlyNSString = (__bridge NSString *)object;
         NSArray<NSString *> *array = [friendlyNSString componentsSeparatedByString:@","];
         
@@ -508,60 +506,10 @@ UIAlertView *add2000AlertView;
 }
 %end
 
-#pragma mark - SBAlertItem
-/****************************************************
-    桌面弹窗
- ****************************************************/
-%hook SBAlertItem
-- (id)init
-{
-    NSLog(@"lqj-SBAlertItem.init");
-    return %orig;
-    //return nil; //可以屏蔽弹窗
-}
-
-%end
-
-%hook SBAlertItemsController
-- (void)activateAlertItem:(id)arg1 animated:(BOOL)arg2
-{
-    NSLog(@"lqj-SBAlertItemsController.activateAlertItem");
-    %orig; //可以屏蔽弹窗
-}
-%end
-
-#pragma mark - UIAlertController
-/****************************************************
-    UIAlertController
- ****************************************************/
-%hook UIAlertController
-+ (id)alertControllerWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(UIAlertControllerStyle)preferredStyle
-{
-    NSLog(@"lqj-UIAlertController.alertControllerWithTitle:%@",title);
-    return %orig;
-}
-%end
-
-#pragma mark - UIViewController
-/****************************************************
-    UIViewController
- ****************************************************/
-%hook UIViewController
-- (void)presentViewController:(UIViewController *)viewControllerToPresent animated: (BOOL)flag completion:(void (^ )(void))completion
-{
-    NSString *name = NSStringFromClass([viewControllerToPresent class]);
-    NSLog(@"lqj-UIViewController.presentViewController:%@",name);
-    %orig;
-}
-%end
-
 #pragma mark - 初始化
 
 %ctor {
     NSLog(@"lqj-ctor.JALTweakDemo.xm");
-    
-    //MSHookFunction((void *)sysctlbyname, (void *)my_sysctlbyname, (void **)&orig_sysctlbyname);
-    //MSHookFunction((void *)uname, (void *)my_uname, (void **)&orig_uname);
 }
 
 
