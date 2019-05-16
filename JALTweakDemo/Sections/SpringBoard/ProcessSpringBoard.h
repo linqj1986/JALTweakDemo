@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/CALayer.h>
+#import "sys/utsname.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

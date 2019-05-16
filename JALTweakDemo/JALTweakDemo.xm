@@ -19,12 +19,14 @@
 #import <CoreMotion/CMPedometer.h>
 #import <HealthKit/HealthKit.h>
 #import <HealthKit/HKSource.h>
+#import <objc/runtime.h>
 #import "ProcessSpringBoard.h"
 
 NSString *LOCATION_FILE = @"/var/mobile/Library/Preferences/lqj.plist";
 double lat = 26.0646090000;
 double lon = 119.2042990000;
 int step = 6133;
+NSString *lastDateString;
 extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void);
 
 #pragma mark - UIApplication
@@ -72,7 +74,7 @@ static void NotificationReceivedCallback(CFNotificationCenterRef center,void *ob
         lat = ((NSString *)posDict[@"lat"]).floatValue;
         lon = ((NSString *)posDict[@"lon"]).floatValue;
         step = ((NSString *)posDict[@"step"]).intValue;
-        NSString *lastDateString = (NSString *)posDict[@"date"];
+        lastDateString = (NSString *)posDict[@"date"];
         if (lastDateString) {
             //NSString * todayString = [[[NSDate date] description] substringToIndex:10];
             //NSString * lastDateString =  [lastDateString substringToIndex:10];
@@ -130,19 +132,24 @@ static void NotificationReceivedCallback(CFNotificationCenterRef center,void *ob
     CMStepCounter
  ****************************************************/
 typedef void (^CMStepQueryHandler)(NSInteger numberOfSteps, NSError *error);
-CMStepQueryHandler origHandler = nil;
-
-CMStepQueryHandler newHandler = ^(NSInteger numberOfSteps, NSError *error){
-    //numberOfSteps = 20301;
-    origHandler(numberOfSteps,error);
+CMStepQueryHandler orig_queryHandler = nil;
+CMStepQueryHandler my_queryHandler = ^(NSInteger numberOfSteps, NSError *error){
+    NSLog(@"lqj-CMStepCounter.CMStepQueryHandler|numberOfSteps=%d|error=%@",numberOfSteps,error.localizedDescription);
+    if (numberOfSteps == 0) {
+        NSLog(@"lqj-CMStepCounter.CMStepQueryHandler cheat!!!!!!!!!|step=%d",step);
+        numberOfSteps = step;
+        error = nil;
+    }
+    orig_queryHandler(numberOfSteps,error);
 };
 
 %hook CMStepCounter
 - (void)queryStepCountStartingFrom:(id)arg1 to:(id)arg2 toQueue:(id)arg3 withHandler:(id)arg4
 {
-    NSLog(@"lqj-queryStepCountStartingFrom");
-    origHandler = [arg4 copy];
-    arg4 = newHandler;
+    NSLog(@"lqj-CMStepCounter.queryStepCountStartingFrom|start=%@|end=%@",arg1,arg2);
+    orig_queryHandler = [arg4 copy];
+    arg4 = my_queryHandler;
+    %orig;
 }
 %end
 
@@ -150,12 +157,13 @@ CMStepQueryHandler newHandler = ^(NSInteger numberOfSteps, NSError *error){
 /****************************************************
     CMPedometer
  ****************************************************/
-typedef void (^CMPedometerHandler)(CMPedometerData *o, NSError *error);
-CMPedometerHandler origHandler2 = nil;
 NSDate *sDate;
 NSDate *eDate;
 CMPedometerData *pedometerData;
-CMPedometerHandler newHandler2 = ^(CMPedometerData *o, NSError *error){
+
+typedef void (^CMPedometerHandler)(CMPedometerData *o, NSError *error);
+CMPedometerHandler orig_meterHandler = nil;
+CMPedometerHandler my_meterHandler = ^(CMPedometerData *o, NSError *error){
     NSLog(@"lqj-CMPedometer.CMPedometerHandler=%@",o);
     if(!o) {
         NSLog(@"lqj-CMPedometer.CMPedometerHandler cheat!!!!!!!!!");
@@ -164,10 +172,22 @@ CMPedometerHandler newHandler2 = ^(CMPedometerData *o, NSError *error){
         o = pedometerData;
         error = nil;
     }
-    origHandler2(o,error);
+    orig_meterHandler(o,error);
 };
 
 %hook CMPedometer
+
+- (void)queryPedometerDataFromDate:(id)arg1 toDate:(id)arg2 withHandler:(id)arg3
+{
+    sDate = arg1;
+    eDate = arg2;
+    if(![arg1 isEqualToDate:arg2]) {
+        NSLog(@"lqj-CMPedometer.queryPedometerDataFromDate=%@,%@",arg1,arg2);
+        orig_meterHandler = [arg3 copy];
+        arg3 = my_meterHandler;
+    }
+    %orig;
+}
 
 + (BOOL)isStepCountingAvailable
 {
@@ -181,18 +201,6 @@ CMPedometerHandler newHandler2 = ^(CMPedometerData *o, NSError *error){
     BOOL ret = %orig;
     NSLog(@"lqj-CMPedometer.isDistanceAvailable=%d",ret);
     return YES;
-}
-
-- (void)queryPedometerDataFromDate:(id)arg1 toDate:(id)arg2 withHandler:(id)arg3
-{
-    sDate = arg1;
-    eDate = arg2;
-    if(![arg1 isEqualToDate:arg2]) {
-        NSLog(@"lqj-CMPedometer.queryPedometerDataFromDate=%@,%@",arg1,arg2);
-        origHandler2 = [arg3 copy];
-        arg3 = newHandler2;
-    }
-    %orig;
 }
 
 %end
@@ -211,7 +219,7 @@ CMPedometerHandler newHandler2 = ^(CMPedometerData *o, NSError *error){
 {
     NSNumber *num = %orig;
     NSLog(@"lqj-CMPedometerData.distance=%@",num);
-    num = @(step/2);
+    num = @((int)(step/1.5));
     NSLog(@"lqj-CMPedometerData.distance2=%@",num);
     return num;
 }
@@ -241,16 +249,23 @@ UIButton *btn2;
 UIButton *btn3;
 UIButton *btn4;
 UIButton *btn;
+UIButton *clearBtn;
+UIButton *add2000Btn;
+UIAlertView *clearAlertView;
+UIAlertView *add2000AlertView;
 @interface SpringBoard
 - (void)btnAction0:(id)btn;
 - (void)btnAction1:(id)btn;
 - (void)btnAction2:(id)btn;
 - (void)btnAction3:(id)btn;
 - (void)btnAction4:(id)btn;
+- (void)btnAction5:(id)btn;
+- (void)btnAction6:(id)btn;
 - (void)handlePanGestures:(UIPanGestureRecognizer *)paramSender;
 - (void)handleTapGestures:(UITapGestureRecognizer *)gestureRecognizer;
 - (void)savePos;
 - (void)processPos;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 @end
 
 %hook SpringBoard
@@ -293,6 +308,32 @@ UIButton *btn;
     btn4.backgroundColor = [UIColor colorWithRed:25/255 green:25/255 blue:25/255 alpha:0.8];
     [btn4 addTarget:self action:@selector(btnAction4:) forControlEvents:UIControlEventTouchUpInside];
     [window addSubview:btn4];
+    
+    clearBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:clearBtn.bounds byRoundingCorners:UIRectCornerTopLeft cornerRadii:CGSizeMake(25,25)];
+    Class CAShapeLayer_class = objc_getClass("CAShapeLayer");
+    //%c("CAShapeLayer")
+    CAShapeLayer *maskLayer = [[CAShapeLayer_class alloc] init];
+    maskLayer.frame = clearBtn.bounds;
+    maskLayer.path = maskPath.CGPath;
+    clearBtn.layer.mask = maskLayer;
+    clearBtn.backgroundColor = UIColor.grayColor;
+    clearBtn.titleLabel.font = [UIFont systemFontOfSize:9];
+    [clearBtn setTitle:@"步数清0" forState:UIControlStateNormal];
+    [clearBtn addTarget:self action:@selector(btnAction5:) forControlEvents:UIControlEventTouchUpInside];
+    [window addSubview:clearBtn];
+    
+    add2000Btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
+    UIBezierPath *maskPath2 = [UIBezierPath bezierPathWithRoundedRect:add2000Btn.bounds byRoundingCorners:UIRectCornerTopRight cornerRadii:CGSizeMake(25,25)];
+    CAShapeLayer *maskLayer2 = [[CAShapeLayer_class alloc] init];
+    maskLayer2.frame = add2000Btn.bounds;
+    maskLayer2.path = maskPath2.CGPath;
+    add2000Btn.layer.mask = maskLayer2;
+    add2000Btn.backgroundColor = UIColor.grayColor;
+    add2000Btn.titleLabel.font = [UIFont systemFontOfSize:9];
+    [add2000Btn setTitle:@"步数+1000" forState:UIControlStateNormal];
+    [add2000Btn addTarget:self action:@selector(btnAction6:) forControlEvents:UIControlEventTouchUpInside];
+    [window addSubview:add2000Btn];
 
     btn = [[UIButton alloc] initWithFrame:CGRectMake(50, 50, 50, 50)];
     btn.titleLabel.font = [UIFont systemFontOfSize:9];
@@ -304,7 +345,7 @@ UIButton *btn;
 
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestures:)];
     [window addGestureRecognizer:pan];
-    window.hidden = NO;
+    window.hidden = YES;
 
     // 位置文件不存在则创建
     NSMutableDictionary *posDict = [NSMutableDictionary dictionaryWithContentsOfFile:LOCATION_FILE];
@@ -313,6 +354,22 @@ UIButton *btn;
 
     //test
     [ProcessSpringBoard Fun1];
+}
+
+%new
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView == add2000AlertView) {
+        if (buttonIndex != 0) {
+            step += 1000;
+            [self processPos];
+        }
+    } else if (alertView == clearAlertView) {
+        if (buttonIndex != 0) {
+            step = 0;
+            [self processPos];
+        }
+    }
 }
 
 %new
@@ -344,9 +401,29 @@ UIButton *btn;
 }
 
 %new
+- (void)btnAction5:(id)btn
+{
+    clearAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定清0吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [clearAlertView show];
+}
+
+%new
+- (void)btnAction6:(id)btn
+{
+    add2000AlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定增加1000吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [add2000AlertView show];
+}
+
+%new
 - (void)btnAction0:(id)btn
 {
-    if (!window.hidden) {
+    if (clearBtn.hidden) {
+        clearBtn.hidden = NO;
+        add2000Btn.hidden = NO;
+    }
+    else {
+        clearBtn.hidden = YES;
+        add2000Btn.hidden = YES;
         window.hidden = YES;
     }
 }
@@ -379,6 +456,11 @@ UIButton *btn;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *todayString = [formatter stringFromDate:[NSDate date]];
+    if (![lastDateString isEqualToString:todayString]) {
+        step = 0;
+        lastDateString = todayString;
+        stepStr = [NSString stringWithFormat:@"%d",step];
+    }
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:latStr forKey:@"lat"];
@@ -472,4 +554,14 @@ UIButton *btn;
     %orig;
 }
 %end
+
+#pragma mark - 初始化
+
+%ctor {
+    NSLog(@"lqj-ctor.JALTweakDemo.xm");
+    
+    //MSHookFunction((void *)sysctlbyname, (void *)my_sysctlbyname, (void **)&orig_sysctlbyname);
+    //MSHookFunction((void *)uname, (void *)my_uname, (void **)&orig_uname);
+}
+
 

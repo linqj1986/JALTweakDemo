@@ -27,11 +27,13 @@
 		ABC80D2722803D6300C7A93E /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
 		ABC80D2C22803D6300C7A93E /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
 		ABC80D2E22803D6300C7A93E /* JALTweakDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JALTweakDemo-Prefix.pch"; sourceTree = "<group>"; };
-		ABC80D2F22803D6300C7A93E /* JALTweakDemo.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = JALTweakDemo.xm; sourceTree = "<group>"; };
+		ABC80D2F22803D6300C7A93E /* JALTweakDemo.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; path = JALTweakDemo.xm; sourceTree = "<group>"; };
 		ABC80D3022803D6300C7A93E /* JALTweakDemo.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JALTweakDemo.mm; sourceTree = "<group>"; };
 		ABC80D3522803D6300C7A93E /* JALTweakDemo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = JALTweakDemo.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/JALTweakDemo.plist; sourceTree = "<group>"; };
 		ABC80D5D22819CD700C7A93E /* ProcessSpringBoard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProcessSpringBoard.h; sourceTree = "<group>"; };
 		ABC80D5E22819CD700C7A93E /* ProcessSpringBoard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProcessSpringBoard.m; sourceTree = "<group>"; };
+		ABE4BA26228D55840027EA53 /* UIDeviceTweak.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UIDeviceTweak.xm; sourceTree = "<group>"; };
+		ABE4BA2A228D568F0027EA53 /* UIDeviceTweak.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIDeviceTweak.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,8 @@
 				AB868DAA228BF06A0034ABB8 /* Tmp.h */,
 				ABC80D2F22803D6300C7A93E /* JALTweakDemo.xm */,
 				ABC80D3022803D6300C7A93E /* JALTweakDemo.mm */,
+				ABE4BA26228D55840027EA53 /* UIDeviceTweak.xm */,
+				ABE4BA2A228D568F0027EA53 /* UIDeviceTweak.mm */,
 				AB62310B228567EC00170E12 /* VenderHelpers */,
 				AB62311022856B3F00170E12 /* Sections */,
 				ABC80D2A22803D6300C7A93E /* Package */,
