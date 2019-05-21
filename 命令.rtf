@@ -1,0 +1,94 @@
+{\rtf1\ansi\ansicpg936\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red251\green2\blue7;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c100000\c14913\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25480\viewh12920\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\'97\'97\'97
+\f1 \'d4\'d2\'bf\'c7
+\f0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+j066deMac-mini:~ j066$ cd /opt/dump/frida-ios-dump \
+\
+\cf3 j066deMac-mini:frida-ios-dump j066$ ssh root@localhost\cf2 \
+Warning: Permanently added 'localhost,192.168.74.37' (RSA) to the list of known hosts.\
+root@localhost's password: \
+\
+\cf3 Qijiangteki-iPhone:~ root# ps -A | grep We\cf2  \
+ 7817 ??         0:12.43 /var/containers/Bundle/Application/5BD9A4CF-BCDE-47AE-8593-A303BCDFFA7E/WeChat.app/WeChat\
+ 7833 ttys000    0:00.00 grep We\
+\cf3 Qijiangteki-iPhone:~ root# exit\cf2 \
+logout\
+Connection to localhost closed.\
+\
+\
+j066deMac-mini:frida-ios-dump j066$ dump.py WeChat\
+Start the target app WeChat\
+unable to launch iOS app: The operation couldn\'92t be completed. Application "" is unknown to FrontBoard.\
+j066deMac-mini:frida-ios-dump j066$ dump.py 
+\f1 \'ce\'a2\'d0\'c5
+\f0 \
+Start the target app 
+\f1 \'ce\'a2\'d0\'c5
+\f0 \
+Dumping 
+\f1 \'ce\'a2\'d0\'c5
+\f0  to /var/folders/kc/hjfjmzpj04q9mx6zpvl0zwcm0000gn/T\
+start dump /private/var/containers/Bundle/Application/5BD9A4CF-BCDE-47AE-8593-A303BCDFFA7E/WeChat.app/Frameworks/QMapKit.framework/QMapKit\
+QMapKit.fid: 100%|\uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 | 4.07M/4.07M [00:00<00:00, 7.80MB/s]\
+Expression_46@2x.png: 232MB [00:54, 4.50MB/s]                                   \
+0.00B [00:00, ?B/s]Generating "
+\f1 \'ce\'a2\'d0\'c5
+\f0 .ipa"\
+\
+zip I/O error: Permission denied\
+zip error: Could not create output file (/opt/dump/frida-ios-dump/
+\f1 \'ce\'a2\'d0\'c5
+\f0 .ipa)\
+Command '('zip', '-qr', u'/opt/dump/frida-ios-dump/\\u5fae\\u4fe1.ipa', './Payload')' returned non-zero exit status 15\
+\
+\cf3 j066deMac-mini:frida-ios-dump j066$ su\cf2 \
+Password:\
+\
+\cf3 sh-3.2# cd /opt/dump/frida-ios-dump\cf2  \
+sh-3.2# dump.py 
+\f1 \'ce\'a2\'d0\'c5
+\f0 \
+sh: dump.py: command not found\
+\
+\cf3 sh-3.2# ./dump.py 
+\f1 \'ce\'a2\'d0\'c5
+\f0 \cf2 \
+Start the target app 
+\f1 \'ce\'a2\'d0\'c5
+\f0 \
+Dumping 
+\f1 \'ce\'a2\'d0\'c5
+\f0  to /tmp\
+start dump /private/var/containers/Bundle/Application/5BD9A4CF-BCDE-47AE-8593-A303BCDFFA7E/WeChat.app/Frameworks/QMapKit.framework/QMapKit\
+QMapKit.fid: 100%|\uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 | 4.07M/4.07M [00:00<00:00, 7.71MB/s]\
+Expression_46@2x.png: 232MB [00:47, 5.12MB/s]                                                                                       \
+0.00B [00:00, ?B/s]Generating "
+\f1 \'ce\'a2\'d0\'c5
+\f0 .ipa"\
+\
+\
+\'97-\'97
+\f1 \'cd\'b7\'ce\'c4\'bc\'fe
+\f0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\cf3 sh-3.2# /opt/MonkeyDev/bin/class-dump -s -S -H --arch arm64 /Users/j066/Desktop/code/iosRE/frida-ios-dump/Payload2/WeChat.app -o /Users/j066/Desktop/code/iosRE/dump-headers/wx\cf2  \
+2019-05-20 16:19:23.865 class-dump[46627:2180905] Warning: Parsing method types failed, glkmatrix4Fromfloat4x4:\
+2019-05-20 16:20:05.591 class-dump[46627:2180905] Warning: Parsing method types failed, glkmatrix4Fromfloat4x4:\
+sh-3.2# \
+\
+\
+\
+\'97-\'97
+\f1 \'bf\'bd\'b1\'b4\'ce\'c4\'bc\'fe
+\f0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+Scp -r root@localhost:/var/mobile /Users/j066/Documents\
+\
+}

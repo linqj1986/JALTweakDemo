@@ -275,8 +275,8 @@ UIAlertView *add2000AlertView;
     %orig;
 
     // 顶部系统状态栏响应window
-    statusbarWin = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 20)];
-    UIColor *color = [UIColor colorWithRed:0/255 green:0/255 blue:0/255 alpha:0.05];
+    statusbarWin = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width/2, 20)];
+    UIColor *color = [UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:0.01];
     statusbarWin.backgroundColor = color;
     statusbarWin.windowLevel = UIWindowLevelAlert;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestures:)];
