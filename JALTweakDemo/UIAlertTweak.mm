@@ -33,7 +33,7 @@
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class SBAlertItemsController; @class SBAlertItem; @class UIAlertView; @class UIViewController; 
+@class UIViewController; @class SBAlertItem; @class SBAlertItemsController; @class UIAlertView; 
 static SBAlertItem* (*_logos_orig$_ungrouped$SBAlertItem$init)(_LOGOS_SELF_TYPE_INIT SBAlertItem*, SEL) _LOGOS_RETURN_RETAINED; static SBAlertItem* _logos_method$_ungrouped$SBAlertItem$init(_LOGOS_SELF_TYPE_INIT SBAlertItem*, SEL) _LOGOS_RETURN_RETAINED; static void (*_logos_orig$_ungrouped$SBAlertItemsController$activateAlertItem$animated$)(_LOGOS_SELF_TYPE_NORMAL SBAlertItemsController* _LOGOS_SELF_CONST, SEL, id, BOOL); static void _logos_method$_ungrouped$SBAlertItemsController$activateAlertItem$animated$(_LOGOS_SELF_TYPE_NORMAL SBAlertItemsController* _LOGOS_SELF_CONST, SEL, id, BOOL); static void (*_logos_orig$_ungrouped$UIAlertView$show)(_LOGOS_SELF_TYPE_NORMAL UIAlertView* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$UIAlertView$show(_LOGOS_SELF_TYPE_NORMAL UIAlertView* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$UIViewController$presentViewController$animated$completion$)(_LOGOS_SELF_TYPE_NORMAL UIViewController* _LOGOS_SELF_CONST, SEL, UIViewController *, BOOL, void (^ )(void)); static void _logos_method$_ungrouped$UIViewController$presentViewController$animated$completion$(_LOGOS_SELF_TYPE_NORMAL UIViewController* _LOGOS_SELF_CONST, SEL, UIViewController *, BOOL, void (^ )(void)); 
 
 #line 14 "/Users/j066/Desktop/code/FTweak/JALTweakDemo/JALTweakDemo/UIAlertTweak.xm"

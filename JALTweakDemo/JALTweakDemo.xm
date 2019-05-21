@@ -466,14 +466,14 @@ UIAlertView *add2000AlertView;
     [dic setObject:stepStr forKey:@"step"];
     [dic setObject:todayString forKey:@"date"];
     [dic writeToFile:LOCATION_FILE atomically:YES];
+    
+    [btn setTitle:[NSString stringWithFormat:@"步数%d",step] forState:UIControlStateNormal];
 }
 
 %new
 - (void)processPos
 {
     step += 10 + arc4random()%20;
-    NSString *stepStr = [NSString stringWithFormat:@"步数%d",step];
-    [btn setTitle:stepStr forState:UIControlStateNormal];
     [self savePos];
     NSString *posStr = [NSString stringWithFormat:@"%f,%f,%d",lat,lon,step];
     CFStringRef yourFriendlyCFString = (__bridge CFStringRef)posStr;

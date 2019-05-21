@@ -59,6 +59,7 @@ static int my_uname(struct utsname *uts)
     return result;
 }
 
+#pragma mark - 初始化
 
 %ctor {
     NSLog(@"lqj-ctor.UIDeviceTweak.xm");

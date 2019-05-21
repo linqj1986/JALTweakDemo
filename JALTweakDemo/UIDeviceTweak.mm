@@ -85,8 +85,9 @@ static int my_uname(struct utsname *uts)
     return result;
 }
 
+#pragma mark - 初始化
 
-static __attribute__((constructor)) void _logosLocalCtor_99ca4bba(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_4bc127fe(int __unused argc, char __unused **argv, char __unused **envp) {
     NSLog(@"lqj-ctor.UIDeviceTweak.xm");
     
     MSHookFunction((void *)sysctlbyname, (void *)my_sysctlbyname, (void **)&orig_sysctlbyname);
@@ -94,4 +95,4 @@ static __attribute__((constructor)) void _logosLocalCtor_99ca4bba(int __unused a
 }
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$UIDevice = objc_getClass("UIDevice"); MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(userInterfaceIdiom), (IMP)&_logos_method$_ungrouped$UIDevice$userInterfaceIdiom, (IMP*)&_logos_orig$_ungrouped$UIDevice$userInterfaceIdiom);MSHookMessageEx(_logos_class$_ungrouped$UIDevice, @selector(model), (IMP)&_logos_method$_ungrouped$UIDevice$model, (IMP*)&_logos_orig$_ungrouped$UIDevice$model);} }
-#line 69 "/Users/j066/Desktop/code/FTweak/JALTweakDemo/JALTweakDemo/UIDeviceTweak.xm"
+#line 70 "/Users/j066/Desktop/code/FTweak/JALTweakDemo/JALTweakDemo/UIDeviceTweak.xm"
