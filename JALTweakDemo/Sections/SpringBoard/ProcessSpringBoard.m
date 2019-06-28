@@ -6,12 +6,29 @@
 //
 
 #import "ProcessSpringBoard.h"
+#import "PTFakeTouch/PTFakeTouch.h"
 
 @implementation ProcessSpringBoard
 
-+ (void)Fun1
++ (ProcessSpringBoard *)shareInstance
 {
-    NSLog(@"lqj-ProcessSpringBoard.Fun1");
+    static ProcessSpringBoard *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[ProcessSpringBoard alloc] init];
+    });
+    return instance;
+}
+
+- (void)touch
+{
+    /*UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    btn.backgroundColor = UIColor.grayColor;
+    [btn setTitle:@"KillSB" forState:UIControlStateNormal];
+    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = UIColor.whiteColor;
+    [view addSubview:btn];*/
 }
 
 @end

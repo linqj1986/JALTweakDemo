@@ -11,7 +11,8 @@
 
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CLLocationManagerDelegate.h>
 #import <CoreLocation/CLLocationManager.h>
 #import <CoreMotion/CoreMotion.h>
 #import <CoreMotion/CMStepCounter.h>
@@ -21,13 +22,17 @@
 #import <HealthKit/HKSource.h>
 #import <objc/runtime.h>
 #import "ProcessSpringBoard.h"
+#import "PTFakeTouch/PTFakeTouch.h"
 
+id locationDelegate;
 NSString *LOCATION_FILE = @"/var/mobile/Library/Preferences/lqj.plist";
 double lat = 26.0646090000;
 double lon = 119.2042990000;
 int step = 6133;
 NSString *lastDateString;
 extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void);
+
+
 
 #pragma mark - UIApplication
 /****************************************************
@@ -54,6 +59,41 @@ static void NotificationReceivedCallback(CFNotificationCenterRef center,void *ob
             //NSObject* workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
             //[workspace performSelector:@selector(openApplicationWithBundleID:) withObject:@"com.apple.Maps"];
         }
+        
+        if (locationDelegate) {
+            //NSLog(@"lqj-locatiion update");
+            CLLocation *location = [[CLLocation alloc] init];
+            NSDate *date = [NSDate date];
+            CLLocationCoordinate2D location2d = CLLocationCoordinate2DMake(lat, lon);
+            location = [location initWithCoordinate:location2d altitude:0.0 horizontalAccuracy:0.0 verticalAccuracy:-1.0 timestamp:date];
+            
+            Class CLLocationManager_class = objc_getClass("CLLocationManager");
+            id sharedManager = [CLLocationManager_class performSelector:@selector(sharedManager)];
+            
+            if ([locationDelegate respondsToSelector:@selector(locationManager:didUpdateToLocation:fromLocation:)])
+            {
+                NSLog(@"lqj-locatiion update1");
+                [locationDelegate locationManager:sharedManager didUpdateToLocation:location fromLocation:0];
+            } else if ([locationDelegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]){
+                NSLog(@"lqj-locatiion update2");
+                NSArray *arr = [NSArray arrayWithObject:location];
+                [locationDelegate locationManager:sharedManager didUpdateLocations:arr];
+            }
+            
+        }
+        
+        // 点击
+        //CGPoint point = CGPointMake(150,150);
+        //NSInteger pointId = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:point withTouchPhase:UITouchPhaseBegan];
+        //pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:point withTouchPhase:UITouchPhaseEnded];
+        // 左滑
+        /*NSInteger pointId = [PTFakeTouch fakeTouchId:[PTFakeTouch getAvailablePointId] AtPoint:CGPointMake(150,150) withTouchPhase:UITouchPhaseBegan];
+        pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:CGPointMake(140,150) withTouchPhase:UITouchPhaseMoved];
+        pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:CGPointMake(130,150) withTouchPhase:UITouchPhaseMoved];
+        pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:CGPointMake(120,150) withTouchPhase:UITouchPhaseMoved];
+        pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:CGPointMake(110,150) withTouchPhase:UITouchPhaseMoved];
+        pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:CGPointMake(100,150) withTouchPhase:UITouchPhaseMoved];
+        pointId = [PTFakeTouch fakeTouchId:pointId AtPoint:CGPointMake(100,150) withTouchPhase:UITouchPhaseEnded];*/
     }
 }
 
@@ -106,6 +146,11 @@ static void NotificationReceivedCallback(CFNotificationCenterRef center,void *ob
  ****************************************************/
 %hook CLLocationManager
 
+-(void)setDelegate:(id)arg1
+{
+    locationDelegate = arg1;
+    %orig;
+}
 
 %end
 
@@ -264,6 +309,7 @@ UIAlertView *add2000AlertView;
 - (void)savePos;
 - (void)processPos;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (UIWindow *)lastWindow;
 @end
 
 %hook SpringBoard
@@ -349,9 +395,6 @@ UIAlertView *add2000AlertView;
     NSMutableDictionary *posDict = [NSMutableDictionary dictionaryWithContentsOfFile:LOCATION_FILE];
     if(!posDict)
         [self savePos];
-
-    //test
-    [ProcessSpringBoard Fun1];
 }
 
 %new
@@ -436,12 +479,23 @@ UIAlertView *add2000AlertView;
 - (void)handlePanGestures:(UIPanGestureRecognizer *)paramSender
 {
     if (paramSender.state != UIGestureRecognizerStateEnded && paramSender.state != UIGestureRecognizerStateFailed){
-
-        CGPoint location = [paramSender locationInView:[UIApplication sharedApplication].keyWindow];
+        CGPoint location = [paramSender locationInView:[self lastWindow]];
         int x = location.x - window.bounds.size.width/2;
         int y = location.y - window.bounds.size.height/2;
         [window setFrame:CGRectMake(x, y, 150, 150)];
     }
+}
+
+%new
+- (UIWindow *)lastWindow
+{
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    for (UIWindow *window in [windows reverseObjectEnumerator]) {
+        //NSLog(@"lqj-%@",NSStringFromClass([window class]));
+        if ([NSStringFromClass([window class]) isEqualToString:@"SBHomeScreenWindow"] && CGRectEqualToRect(window.bounds,[UIScreen mainScreen].bounds))
+            return window;
+    }
+    return [UIApplication sharedApplication].keyWindow;
 }
 
 %new

@@ -6,13 +6,15 @@
 	<dict>
 		<key>Bundles</key>
 		<array>
-			<string>com.tencent.xin</string>
-			<string>com.qijiang.emptyTest</string>
-			<string>com.apple.HealthKitUI</string>
-			<string>com.tencent.mqq</string>
-			<string>com.apple.Maps</string>
-			<string>com.tencent.yuling</string>
-			<string>com.apple.springboard</string>
+			<string>com.apple.UIKit</string>
+			<string>com.apple.preferences</string>
+			<string>com.tencent.xin1</string>
+			<string>com.qijiang.emptyTest1</string>
+			<string>com.apple.HealthKitUI1</string>
+			<string>com.tencent.mqq1</string>
+			<string>com.apple.Maps1</string>
+			<string>com.tencent.yuling1</string>
+			<string>com.apple.springboard1</string>
 		</array>
 	</dict>
 </dict>

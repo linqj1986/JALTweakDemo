@@ -6,13 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <QuartzCore/CALayer.h>
 #import "sys/utsname.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProcessSpringBoard : NSObject
-+ (void)Fun1;
++ (ProcessSpringBoard *)shareInstance;
+- (void)touch;
 @end
 
 @interface LSApplicationWorkspace : NSObject
@@ -25,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SBApplication : NSObject
 - (NSString *)bundleIdentifier;
 @end
+
+
 
 
 

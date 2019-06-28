@@ -24,8 +24,13 @@
 		AB3D156F22927A7900310168 /* WeChatRedEnvelopParam.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3D156322927A7900310168 /* WeChatRedEnvelopParam.h */; };
 		AB3D157022927A7900310168 /* WBRedEnvelopTaskManager.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3D156422927A7900310168 /* WBRedEnvelopTaskManager.h */; };
 		AB3D157122927A7900310168 /* WBRedEnvelopConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3D156522927A7900310168 /* WBRedEnvelopConfig.h */; };
+		AB3D16052296982400310168 /* PTFakeTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3D16032296982400310168 /* PTFakeTouch.framework */; };
+		AB3D16062296982400310168 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3D16042296982400310168 /* IOKit.framework */; };
+		AB3D16092297EF3C00310168 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3D16082297EF3C00310168 /* CoreGraphics.framework */; };
 		AB62310E2285680000170E12 /* CTBlockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = AB62310C2285680000170E12 /* CTBlockDescription.m */; };
 		AB62310F2285680000170E12 /* CTBlockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = AB62310D2285680000170E12 /* CTBlockDescription.h */; };
+		AB91730422B8E91A009B03CC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB91730322B8E91A009B03CC /* CoreTelephony.framework */; };
+		ABB1EB2E22AE499000497DF8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABB1EB2D22AE499000497DF8 /* CoreLocation.framework */; };
 		ABC80D2422803D6300C7A93E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC80D2322803D6300C7A93E /* UIKit.framework */; };
 		ABC80D2622803D6300C7A93E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC80D2522803D6300C7A93E /* Foundation.framework */; };
 		ABC80D2822803D6300C7A93E /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC80D2722803D6300C7A93E /* CydiaSubstrate.framework */; };
@@ -54,9 +59,15 @@
 		AB3D156322927A7900310168 /* WeChatRedEnvelopParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatRedEnvelopParam.h; sourceTree = "<group>"; };
 		AB3D156422927A7900310168 /* WBRedEnvelopTaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRedEnvelopTaskManager.h; sourceTree = "<group>"; };
 		AB3D156522927A7900310168 /* WBRedEnvelopConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRedEnvelopConfig.h; sourceTree = "<group>"; };
+		AB3D16032296982400310168 /* PTFakeTouch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PTFakeTouch.framework; sourceTree = "<group>"; };
+		AB3D16042296982400310168 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IOKit.framework; sourceTree = "<group>"; };
+		AB3D16082297EF3C00310168 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		AB62310C2285680000170E12 /* CTBlockDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTBlockDescription.m; sourceTree = "<group>"; };
 		AB62310D2285680000170E12 /* CTBlockDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTBlockDescription.h; sourceTree = "<group>"; };
 		AB868DAA228BF06A0034ABB8 /* Tmp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tmp.h; sourceTree = "<group>"; };
+		AB91730322B8E91A009B03CC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		AB91730522B9DD17009B03CC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		ABB1EB2D22AE499000497DF8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ABC80D2022803D6300C7A93E /* JALTweakDemo.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = JALTweakDemo.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC80D2322803D6300C7A93E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABC80D2522803D6300C7A93E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,9 +92,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB91730422B8E91A009B03CC /* CoreTelephony.framework in Frameworks */,
+				ABB1EB2E22AE499000497DF8 /* CoreLocation.framework in Frameworks */,
+				AB3D16092297EF3C00310168 /* CoreGraphics.framework in Frameworks */,
 				ABC80D2422803D6300C7A93E /* UIKit.framework in Frameworks */,
 				ABC80D2622803D6300C7A93E /* Foundation.framework in Frameworks */,
 				ABC80D2822803D6300C7A93E /* CydiaSubstrate.framework in Frameworks */,
+				AB3D16062296982400310168 /* IOKit.framework in Frameworks */,
+				AB3D16052296982400310168 /* PTFakeTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,9 +130,19 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		AB3D157D229678EA00310168 /* PTFake */ = {
+			isa = PBXGroup;
+			children = (
+				AB3D16042296982400310168 /* IOKit.framework */,
+				AB3D16032296982400310168 /* PTFakeTouch.framework */,
+			);
+			path = PTFake;
+			sourceTree = "<group>";
+		};
 		AB62310B228567EC00170E12 /* VenderHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				AB3D157D229678EA00310168 /* PTFake */,
 				AB62310D2285680000170E12 /* CTBlockDescription.h */,
 				AB62310C2285680000170E12 /* CTBlockDescription.m */,
 			);
@@ -161,6 +187,10 @@
 		ABC80D2222803D6300C7A93E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB91730522B9DD17009B03CC /* CoreFoundation.framework */,
+				AB91730322B8E91A009B03CC /* CoreTelephony.framework */,
+				ABB1EB2D22AE499000497DF8 /* CoreLocation.framework */,
+				AB3D16082297EF3C00310168 /* CoreGraphics.framework */,
 				ABC80D2322803D6300C7A93E /* UIKit.framework */,
 				ABC80D2522803D6300C7A93E /* Foundation.framework */,
 				ABC80D2722803D6300C7A93E /* CydiaSubstrate.framework */,
@@ -398,7 +428,7 @@
 				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
 				MonkeyDevPath = /opt/MonkeyDev;
 				MonkeyDevTheosPath = /opt/theos;
-				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"tweak1\\\"\"";
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"JALTweakDemo\\\"\"";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -432,7 +462,7 @@
 				MonkeyDevPath = /opt/MonkeyDev;
 				MonkeyDevTheosPath = /opt/theos;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"tweak1\\\"\"";
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"JALTweakDemo\\\"\"";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = NO;
@@ -448,22 +478,29 @@
 				DEVELOPMENT_TEAM = PJXX47MLM6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JALTweakDemo/VenderHelpers/PTFake",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JALTweakDemo/JALTweakDemo-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = localhost;
+				MonkeyDevDeviceIP = localhost1;
 				MonkeyDevDevicePassword = alpine;
-				MonkeyDevDevicePort = 22;
+				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = YES;
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = SpringBoard;
 				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"JALTweakDemo\\\"\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -476,22 +513,29 @@
 				DEVELOPMENT_TEAM = PJXX47MLM6;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JALTweakDemo/VenderHelpers/PTFake",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JALTweakDemo/JALTweakDemo-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MonkeyDevBuildPackageOnAnyBuild = NO;
 				MonkeyDevClearUiCacheOnInstall = NO;
 				MonkeyDevCopyOnBuild = NO;
-				MonkeyDevDeviceIP = localhost;
+				MonkeyDevDeviceIP = localhost1;
 				MonkeyDevDevicePassword = alpine;
-				MonkeyDevDevicePort = 22;
+				MonkeyDevDevicePort = 2222;
 				MonkeyDevInstallOnAnyBuild = YES;
 				MonkeyDevInstallOnProfiling = YES;
 				MonkeyDevkillProcessOnInstall = SpringBoard;
 				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"JALTweakDemo\\\"\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};

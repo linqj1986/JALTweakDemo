@@ -1,7 +1,7 @@
-Package: com.qijiang.tweak1
-Name: tweak1
+Package: com.qijiang.jaltweakdemo
+Name: JALTweakDemo
 Version: 0.1-1
-Description: 
+Description: 定位改步Demo
 Section: System
 Depends: firmware (>= 5.0), mobilesubstrate
 Conflicts: 
@@ -12,6 +12,6 @@ Author: j066
 dev: 
 Homepage: 
 Depiction: 
-Maintainer: 
+Maintainer: j066
 Icon: 
 
